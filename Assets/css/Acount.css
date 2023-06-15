@@ -1,0 +1,438 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Red+Hat+Display:wght@400;700;900&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+  
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(9  , 72%, 55%);
+  --first-color-light: hsl(9, 97%, 77%);
+  --first-color-alt: hsl(9, 67%, 52%);
+  --first-color-dark: hsl(9, 63%, 50%);
+  --first-color-gray: hsl(79, 6%, 64%);
+  --title-color: hsl(180, 4%, 98%);
+  --title-color-black: hsl(180, 4%, 12%);
+  --text-color: hsl(180, 4%, 72%);
+  --text-color-light: hsl(180, 4%, 65%);
+  --body-color: hsl(180, 12%, 8%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: 'Red Hat Display', sans-serif;
+  --second-font: 'Kaushan Script', cursive;
+  --biggest-font-size: 2rem;
+  --bigger-font-size: 1.5rem;
+  --big-font-size: 1.25rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+
+  /*========== Font weight ==========*/
+  --font-bold: 700;
+  --font-black: 900;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/* Responsive typography */
+@media screen and (min-width: 1024px) {
+  :root {
+    --biggest-font-size: 6rem;
+    --bigger-font-size: 3.5rem;
+    --big-font-size: 2.75rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+button,
+input {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+h1, h2, h3 {
+  color: var(--title-color);
+  font-weight: var(--font-bold);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1124px;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+}
+
+.section {
+  padding: 4.5rem 0 2rem;
+}
+
+.section__data {
+  display: flex;
+  flex-direction: column;
+  row-gap: .75rem;
+  text-align: center;
+}
+
+.section__title, 
+.section__title-border {
+  font-size: var(--big-font-size);
+  letter-spacing: 1.5px;
+}
+
+.section__subtitle {
+  font-size: var(--h2-font-size);
+  font-family: var(--second-font);
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: var(--first-color);
+  transform: rotate(-2deg);
+}
+
+.section__titles {
+  display: flex;
+  column-gap: .75rem;
+  justify-content: center;
+}
+
+.section__title-border {
+  -webkit-text-stroke: 1px var(--text-color);
+  color: transparent;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.main {
+  overflow: hidden; /* For animation ScrollReveal */
+}
+
+.color-red {
+  color: hsl(0, 80%, 64%);
+}
+
+.color-green {
+  color: var(--first-color);
+}
+
+/*=============== HEADER & NAV ===============*/
+.header{
+  padding: 20px;
+  width: 100%;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  transition: background .3s;
+}
+
+.nav{
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo{
+  color: var(--title-color);
+  display: flex;
+}
+
+.nav__logo{
+  padding-left: 1.5rem;
+  align-items: center;
+  column-gap: .5rem;
+  font-weight: var(--font-bold);
+}
+
+.nav__logo img{
+  width: 1.25rem;
+}
+
+.nav__link{
+  color: var(--title-color);
+  transition: color .3s;
+}
+
+.nav__link:hover{
+  color: var(--first-color);
+}
+
+.nav .nav__button{
+  background-color: var(--title-color);
+  border: none;
+}
+
+/* Change background header */
+.bg-header{
+  background-color: var(--body-color);
+  box-shadow: 0 4px 8px hsla(180, 12%, 4%, .3);
+}
+
+/* Active link */
+.active-link{
+  color: var(--first-color);
+}
+
+/*=============== BUTTON ===============*/
+.button{
+  display: inline-block;
+  background-color: var(--first-color);
+  padding: 18px 32px;
+  border: 2px solid var(--first-color-light);
+  color: var(--title-color-black);
+  font-weight: var(--font-bold);
+  cursor: pointer;
+  transition: background .3s;
+}
+
+.button:hover{
+  background-color: var(--first-color-alt);
+}
+
+.button i{
+  font-size: 1.25rem;
+  transition: transform .3s;
+}
+
+.button__flex{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: .5rem;
+}
+
+.button__flex:hover i{
+  transform: translateX(.25rem);
+}
+
+
+/*=============== PROGRAM ===============*/
+.exercise__container{
+  grid-template-columns: 225px;
+  justify-content: center;
+  row-gap: 2rem;
+  margin-top: 2rem;
+}
+
+.exercise__card{
+  display: grid;
+  background-color: hsla(79, 6%, 64%, .07);
+  padding: 1.5rem 2rem;
+  border: 2px solid transparent;
+  transition: background .5s, border .4s;
+}
+
+.exercise__img{
+  width: 200px;
+}
+
+.exercise__title{
+  font-size: var(--h3-font-size);
+  margin-bottom: 1rem;
+}
+
+.exercise__description{
+  font-size: var(--small-font-size);
+  letter-spacing: .5px;
+  line-height: 150%;
+}
+
+.exercise__title, .exercise__description{
+  transition: color .5s;
+}
+
+
+.exercise__card:hover {
+  background-color: var(--first-color);
+  border: 2px solid var(--first-color-light);
+}
+
+.exercise__card:hover .exercise__shape{
+  background-color: var(--first-color-light);
+}
+
+.exercise__card:hover .exercise__title,
+.exercise__card:hover .exercise__description{
+  color: var(--title-color-black);
+}
+
+.exercise__card:hover .exercise__button{
+  opacity: 1;
+}
+
+
+/*=============== FOOTER ===============*/
+.footer {
+  background-color: var(--body-color);
+  color: var(--title-color);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.social a {
+  color: var(--title-color);
+  font-size: 20px;
+  margin: 0 5px;
+}
+
+.copyrigth {
+  font-size: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    text-align: center;
+  }
+  
+  .social {
+    margin-bottom: 20px;
+  }
+  
+}
+
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar{
+  width: .6rem;
+  border-radius: .5rem;
+  background-color: hsl(79, 4%, 15%);
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: hsl(79, 4%, 25%);
+  border-radius: .5rem;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background-color: hsl(79, 4%, 35%);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 340px){
+  .container{
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .section__subtitle, .section__title{
+    text-align: center;
+  }
+
+  .section__titles{
+    flex-direction: column;
+    row-gap: .25rem;
+  }
+
+}
+
+
+/* For medium devices */
+@media screen and (min-width: 768px){
+  .section__data{
+    text-align: initial;
+  }
+
+  .section__subtitle, .section__title{
+    text-align: center;
+  }
+
+  .exercise__container{
+    grid-template-columns: repeat(2, 225px);
+    gap: 2.5rem;
+  }
+
+  .section__titles{
+    justify-content: initial;
+  }
+
+}
+
+/* For large devices */
+@media screen and (min-width: 1023px){
+  .nav{
+    height: calc(var(--header-height)+2rem);
+  }
+
+  .section__subtitle, .section__title{
+    text-align: center;
+  }
+
+
+  .nav__list{
+    flex-direction: row;
+    padding: 0;
+    align-items: center;
+    column-gap: 4rem;
+  }
+
+}
+
+@media screen and (min-width: 1150px){
+    .section{
+        padding: 0;
+    }
+  .container{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .exercise__container{
+    grid-template-columns: repeat(4, 245px);
+  }
+
+  .exercise__card{
+    padding: 2rem;
+  }
+
+}
